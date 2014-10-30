@@ -22,6 +22,16 @@ define([
     var instantiator = variant === 'pseudoclassical' ? Stack : makeStack;
     var prototypeOfInstances = variant === 'prototypal' && stackMethods;
 
+    var getRandomNumber = function(){
+      return 100*Math.random();
+    };
+
+    var megaArray = [];
+    for(var i = 0; i < 10000000; i++){
+      megaArray[i]=getRandomNumber();
+    };
+
+
     beforeEach(function(){
       if(variant === 'pseudoclassical'){
         stack = new instantiator();
@@ -43,6 +53,30 @@ define([
         stack.push('b');
         expect(stack.size()).to.equal(2);
       });
+
+      it('reports a size of 6 after adding six items', function() {
+        stack.push('a');
+        stack.push('b');
+        stack.push('a');
+        stack.push('b');
+        stack.push('a');
+        stack.push('b');
+        expect(stack.size()).to.equal(6);
+      });
+
+     it('pushes and pops the whole megaArray successfully', function() {
+
+
+        for(var j = 0; j<megaArray.size;j++){
+          stack.push(megaArray[j]);
+        }
+        for(var k = 0; k<megaArray.size;k++){
+          stack.pop();
+        }
+        expect(stack.size()).to.equal(0);
+      });
+
+
 
       it('does not error when removing from an empty stack', function() {
         expect(function(){ stack.pop(); }).not.throws();
@@ -164,3 +198,7 @@ define([
 
   window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
 });
+
+
+
+
