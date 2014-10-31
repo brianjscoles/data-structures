@@ -48,7 +48,6 @@ treeMethods.traverse = function(callback){
   }
 }
 
-
 //complexity: constant
 var extensify = function(obj){
   var args = Array.prototype.slice.call(arguments,1);
