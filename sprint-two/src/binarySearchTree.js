@@ -37,14 +37,14 @@ bstMethods.contains = function(value){
   if(this.value === value){
     return true;
   }
-  if(this.left){
-    if(this.left.contains(value)){
+
+  if(value > this.value){
+    if(this.right && this.right.contains(value)){
       return true;
-    };
-  }
-  if(this.right){
-    if(this.right.contains(value)){
-      return true;
+    }
+  } else {
+    if(this.left && this.left.contains(value)){
+        return true;
     }
   }
   return false;
