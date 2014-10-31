@@ -10,15 +10,40 @@ var makeLinkedList = function(){
     }
     if(list.tail){
       list.tail.next = newNode;
+      newNode.prev = list.tail;
     };
     list.tail = newNode;
   };
 
+  list.addToHead = function(value){
+    var newNode = makeNode(value);
+    if(list.head === null){
+      list.head = newNode;
+      list.tail = newNode;
+    } else {
+      newNode.next = list.head;
+      list.head.prev = newNode;
+      list.head = newNode;
+    }
+
+  }
+
   list.removeHead = function(){
     var temp = list.head.value;
     list.head = list.head.next;
+    list.head.prev = null;
     return temp;
   };
+
+  list.removeTail = function(){
+    if(list.tail){
+      list.tail.prev.next = null;
+      var temp = list.tail.value;
+      list.tail = list.tail.prev;
+      delete temp;
+      return temp;
+    }
+  }
 
   list.contains = function(target){
     var currentNode = list.head;
@@ -44,6 +69,7 @@ var makeNode = function(value){
 
   node.value = value;
   node.next = null;
+  node.prev = null;
 
   return node;
 };
