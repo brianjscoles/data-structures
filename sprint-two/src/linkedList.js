@@ -67,7 +67,6 @@ var makeLinkedList = function(){
 
 
 
-
 var makeNode = function(value){
   var node = {};
 

@@ -27,11 +27,3 @@ stackMethods.pop = function(){
 stackMethods.size = function(){
   return this.count;
 };
-
-// var stack = {
-//   size : 0;
-// }
-//
-// var stackMethods = {
-//   size : 0;
-// }
