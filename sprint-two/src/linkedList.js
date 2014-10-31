@@ -29,10 +29,14 @@ var makeLinkedList = function(){
   }
 
   list.removeHead = function(){
-    var temp = list.head.value;
-    list.head = list.head.next;
-    list.head.prev = null;
-    return temp;
+    if(list.head){
+      var temp = list.head.value;
+      list.head = list.head.next;
+      if(list.head) {
+        list.head.prev = null;
+      }
+      return temp;
+    }
   };
 
   list.removeTail = function(){
