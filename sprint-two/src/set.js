@@ -13,7 +13,7 @@ setPrototype.add = function(item){
 };
 
 setPrototype.contains = function(item){
-  return this._storage.indexOf(item)>-1;
+  return this._storage.indexOf(item) >= 0;
 
 };
 
