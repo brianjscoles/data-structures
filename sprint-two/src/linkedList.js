@@ -44,7 +44,7 @@ var makeLinkedList = function(){
       list.tail.prev.next = null;
       var temp = list.tail.value;
       list.tail = list.tail.prev;
-      delete temp;
+      //delete temp;
       return temp;
     }
   }
