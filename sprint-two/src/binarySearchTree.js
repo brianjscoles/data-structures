@@ -3,6 +3,7 @@ var makeBinarySearchTree = function(value){
   bst.left = null;
   bst.right = null;
   bst.value = value;
+  bst.count = 0;
   return bst;
 };
 
@@ -53,6 +54,7 @@ bstMethods.insert = function(value){
       this.left.insert(value);
     }
   }
+  this.count++;
 };
 
 bstMethods.contains = function(value){
@@ -95,7 +97,19 @@ bstMethods.breadthFirstLog = function(callback){
       myQueue.enqueue(currentNode.right);
     }
   }
+};
 
+bstMethods.countLevels = function(count){
+  count = count || 1;
+  if(!this.left && !this.right){
+    return count;
+  }
+  var leftCount = (this.left) ? this.left.countLevels(count + 1) : 0;
+  var rightCount = (this.right) ? this.right.countLevels(count + 1) : 0;
+  return Math.max(leftCount, rightCount);
+};
+
+bstMethods.rebalance = function(){
 
 };
 /*
@@ -104,4 +118,7 @@ bstMethods.breadthFirstLog = function(callback){
 
 
 // Anything
-
+//
+//
+// 2^x + 1 >= nodes
+//

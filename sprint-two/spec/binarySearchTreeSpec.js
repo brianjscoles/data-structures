@@ -52,4 +52,13 @@ describe('binarySearchTree', function() {
     expect(array).to.eql([5,2,8,1,3,3,4]);
   });
 
+  it('should count the number of levels', function(){
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    expect(binarySearchTree.countLevels()).to.eql(6);
+  })
+
 });
