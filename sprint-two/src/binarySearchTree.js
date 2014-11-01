@@ -25,7 +25,7 @@ bstMethods.insert = function(value){
   }
   this.count++;
   if(this.countLevels() > this.minLevel()*2){
-    console.log("I should rebalance!");
+    this.rebalance();
   }
 
 };
@@ -89,10 +89,64 @@ bstMethods.minLevel = function(){
     m++;
   }
   return m;
+};
+
+bstMethods.printToConsole = function(){
+    var array = [];
+    this.breadthFirstLog(function(value){ array.push(value); });
+    console.log("Current levels: " + this.countLevels() + " " +JSON.stringify(array));
+
 }
 
 bstMethods.rebalance = function(){
-  //TODO
+    // create a new array
+  var arr = [];
+
+  // do a breadthFirstLog search with a callback pushing to new array
+  this.breadthFirstLog(function(value){
+    arr.push(value);
+  });
+  // sort new array into numberical order (array.sort())
+  arr.sort(function(a,b){ return a-b; });
+    // generate a new queue
+  var myQ = makeQueue();
+  myQ.enqueue(arr);
+
+  // reset root node of binary search tree
+  this.value = null;
+  this.left = null;
+  this.right = null;
+
+
+  // iterate through the new array
+  // while the size of the queue is 0
+  while(myQ.size()>0){
+
+    //dequeue next array
+    var dequeuedArray = myQ.dequeue();
+
+    // set variable equal Math.floor(array.length / 2 )
+    var middle = Math.floor( (dequeuedArray.length-1) / 2);
+    // insert into the new tree -> array[middle]
+    if(this.value===null){
+      this.value = dequeuedArray[middle];
+    } else {
+      this.insert(dequeuedArray[middle]);
+    }
+
+    // if the array is greater than 2
+    // get two halves, excluding middle value
+    // enqueue both halves
+    if(dequeuedArray.length>2){
+      myQ.enqueue(dequeuedArray.slice(0,middle));
+      myQ.enqueue(dequeuedArray.slice(middle+1));
+
+    //  else if array has length 2
+    //  enqueue right half of array
+    } else if(dequeuedArray.length === 2) {
+      myQ.enqueue(dequeuedArray.slice(1));
+    }
+  }
 };
 
 
