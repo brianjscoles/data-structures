@@ -7,37 +7,6 @@ var makeBinarySearchTree = function(value){
   return bst;
 };
 
-var makeQueue = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
-  var queue = Object.create(queueMethods);
-  queue.front = 0;
-  queue.back = 0;
-  return queue;
-
-};
-
-var queueMethods = {};
-
-queueMethods.enqueue = function(value) {
-  this[this.back] = value;
-  this.back++;
-};
-
-queueMethods.dequeue = function() {
-  if(this.size()){
-    var temp = this[this.front];
-    this.front++;
-    delete temp;
-    return temp;
-  }
-};
-
-queueMethods.size = function() {
-  return this.back - this.front;
-};
-
-
 var bstMethods = {};
 
 bstMethods.insert = function(value){
@@ -55,6 +24,10 @@ bstMethods.insert = function(value){
     }
   }
   this.count++;
+  if(this.countLevels() > this.minLevel()*2){
+    console.log("I should rebalance!");
+  }
+
 };
 
 bstMethods.contains = function(value){
@@ -109,16 +82,49 @@ bstMethods.countLevels = function(count){
   return Math.max(leftCount, rightCount);
 };
 
+
+bstMethods.minLevel = function(){
+  var m = 0;
+  while(Math.pow(2,m)-1 < this.count){
+    m++;
+  }
+  return m;
+}
+
 bstMethods.rebalance = function(){
+  //TODO
+};
+
+
+
+
+
+var makeQueue = function() {
+  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
+  // but try not not reference your old code in writing the new style.
+  var queue = Object.create(queueMethods);
+  queue.front = 0;
+  queue.back = 0;
+  return queue;
 
 };
-/*
- * Complexity: What is the time complexity of the above functions?
- */
 
+var queueMethods = {};
 
-// Anything
-//
-//
-// 2^x + 1 >= nodes
-//
+queueMethods.enqueue = function(value) {
+  this[this.back] = value;
+  this.back++;
+};
+
+queueMethods.dequeue = function() {
+  if(this.size()){
+    var temp = this[this.front];
+    this.front++;
+    delete temp;
+    return temp;
+  }
+};
+
+queueMethods.size = function() {
+  return this.back - this.front;
+};

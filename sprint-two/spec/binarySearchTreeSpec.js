@@ -61,4 +61,14 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.countLevels()).to.eql(6);
   })
 
+    it('should rebalance itself when needed', function(){
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(3);
+    expect(binarySearchTree.countLevels()).to.eql(3);
+  })
+
 });
