@@ -58,7 +58,7 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(3);
     binarySearchTree.insert(3);
     binarySearchTree.insert(3);
-    expect(binarySearchTree.countLevels()).to.eql(6);
+    expect(binarySearchTree.maxDepth.to.eql(6);
   })
 
   it('should rebalance itself when needed', function(){
@@ -69,7 +69,7 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(5);
     binarySearchTree.insert(6);
     binarySearchTree.insert(7);
-    expect(binarySearchTree.countLevels()).to.eql(3);
+    expect(binarySearchTree.maxDepth.to.eql(3);
   })
 
   it('should balance in an optimal manner - tested by breadthfirstlog', function(){
@@ -105,7 +105,7 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(14);
     binarySearchTree.insert(15);
     binarySearchTree.rebalance();
-    expect(binarySearchTree.countLevels()).to.eql(4);
+    expect(binarySearchTree.maxDepth).to.eql(4);
   })
 
 });
